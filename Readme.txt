@@ -28,4 +28,4 @@ KRATKI OPIS FUNKCIONALNOSTI:
 	Crveni X gumb bi, naravno, služio izlasku iz aplikacije; no to bi možda bilo malo teško – ako ne i komplicirano – za implementirati ovdje, zbog čega nema nikakve funkcionalnosti iza sebe.
 
 
-Link na javni GitHub prototip:	*
+Link na javni GitHub prototip:	https://github.com/esaric6/CalendaReact.git
