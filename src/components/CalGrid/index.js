@@ -68,7 +68,7 @@ const CalGrid = ({startDay, today}) => {
                 {
                     daysMap.map((dayItem) => (
                         <CellWrap
-                            isWeekday={dayItem.day() === 6 || dayItem.day() === 0}
+                            isWeekday={dayItem.day() === 0 || dayItem.day() === 6}
                             isSelMonth={isSelMonth(dayItem)}
                         >
                             <CellInRow justifyContent={"flex-end"}>
