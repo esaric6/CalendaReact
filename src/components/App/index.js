@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import moment from "moment";
-import "moment/locale/hr";
+  import "moment/locale/hr";
 import styled from "styled-components";
+
 import {CalGrid} from "../CalGrid";
 import {CalNav} from "../CalNav";
 import {TitleBar} from "../TitleBar";
