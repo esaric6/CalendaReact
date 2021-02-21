@@ -38,6 +38,6 @@ function App() {
       <CalGrid startDay={startDay} today={today} />
     </ShadoWrap>
   );
-}
+};
 
 export default App;
