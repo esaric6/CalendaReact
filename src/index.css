@@ -8,13 +8,13 @@ html, body{
 }
 
 body {
-	font-family: 	'Cantarell', 'Droid Sans', 'Fira Sans', 'Helvetica Neue'
-					'Oxygen', 'Roboto', 'Segoe UI', 'Ubuntu', 
-					sans-serif;
+	font-family: 	'Segoe UI', 'Roboto', 'Oxygen',
+					'Ubuntu', 'Cantarell', 'Fira Sans', 
+					'Droid Sans', 'Helvetica Neue', sans-serif;
 }
 
 code {
-	font-family: 	Consolas, Menlo, Monaco, source-code-pro, 
+	font-family: 	source-code-pro, Menlo, Monaco, Consolas, 
 					'Courier New', 
 					monospace;
 }
