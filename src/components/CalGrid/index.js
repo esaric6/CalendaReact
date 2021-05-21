@@ -2,6 +2,8 @@ import React from "react";
 import moment from "moment";
 import styled from "styled-components";
 
+import {Events} from "../Events";
+
 const GridWrap = styled.div`
     background-color: ${props => props.isHeader ? "#1e1f21" : "#404040"};
     display: grid;
@@ -13,8 +15,10 @@ const GridWrap = styled.div`
 const CellWrap = styled.div`
     background-color: ${props => props.isWeekday ? "#272829" : "#1e1f21"};
     color: ${props => props.isSelMonth ? "#dddddd" : "#555759"};
-    min-height: ${props => props.isHeader ? 24 : 80}px;
-    min-width: 140px;
+    min-height: ${props => props.isHeader ? 24 : 100}px;
+    max-height: ${props => props.isHeader ? 24 : 100}px;
+    min-width: 175px;
+    max-width: 175px;
 `;
 
 const CellInRow = styled.div`
@@ -43,7 +47,7 @@ const CurrDay = styled('div')`
     width: 82.5%;
 `;
 
-const CalGrid = ({startDay, today}) => {
+const CalGrid = ({startDay, today, editEventHandler}) => {
     const totalDays = 42;
     const day = startDay.clone().subtract(1, "day");
     const daysMap = [...Array(totalDays)].map(() => day.add(1, "day").clone());
@@ -77,6 +81,9 @@ const CalGrid = ({startDay, today}) => {
                                     {isCurrDay(dayItem) && <CurrDay>{dayItem.format("D")}</CurrDay>}
                                 </DayWrap>
                             </CellInRow>
+
+                            <Events dayItem={dayItem} today={today} editEventHandler={editEventHandler} />
+
                         </CellWrap>
                     ))
                 }
