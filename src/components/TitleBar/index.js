@@ -24,7 +24,7 @@ const ButtonWrap = styled('button')`
 
 const NewBtn = styled(ButtonWrap)`
   background-color: #449246;
-  cursor: not-allowed;
+  cursor: pointer;
   font-weight: bold;
   margin-bottom: 9px;
   margin-left: 9px;
@@ -44,9 +44,9 @@ const ExitBtn = styled(ButtonWrap)`
   padding-right: 16px;
 `;
 
-const TitleBar = ({/* newEventHandler, exitBtnHandler */}) => (
+const TitleBar = ({newEventHandler}) => (
   <DivWrap>
-	<NewBtn /*onClick={ newEventHandler}*/> Novi događaj </NewBtn>
+	<NewBtn onClick={newEventHandler}> Novi događaj </NewBtn>
 	<ExitBtn /*onClick={ exitBtnHandler}*/> X </ExitBtn>
   </DivWrap>
 );
