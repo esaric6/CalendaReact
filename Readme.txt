@@ -19,10 +19,12 @@ KRATKI OPIS APLIKACIJE:
 	Kalendar je, također, lokaliziran na hrvatski format datuma.
 
 KRATKI OPIS FUNKCIONALNOSTI:
-	Moglo bi se reći da je ova aplikacija u Beta iteraciji (verziji), otkako je funkcionalnost takozvanog “upravljanja događajima” (event management) – koja podrazumijeva dodavanje, uređivanje i brisanje jednog (ali i više) događaja u (i iz) kalendar(a) – je još uvijek u izradi (WiP).
-		Klikom na gumb za dodavanje događaja, pojavio bi se overlay sa formom putem koje bi se novi događaj dodao u aplikaciju; moguće bi bilo i dodavanje više događaja.
+	Prethodno, ova je aplikacija bila u Beta inačici (verziji), i to zbog toga što je funkcionalnost takozvanog "upravljanja događajima" (event management) nedostajala.
+	Za razliku od te inicijalne inačice, ova (naravno) ima tu mogućnost!
+	Uz pomoć Googleove FireBase baze podataka, događajima se može upravljati; drugim riječima, oni se mogu dodati (čak i više njih na isti dan) i brisati, te uređivati (mijenjati).
+		Klikom na gumb za dodavanje događaja, pojavljuje se overlay sa formom putem koje bi se novi događaj dodao u aplikaciju; moguće je i dodavanje više događaja na isti dan.
 			Uređivanje događaja
-				Kliknulo bi se na već dodani događaj kojeg se želi urediti, nakon čega bi se također pojavio overlay sa formom gdje su već popunjeni poznati podaci o odabranom događaju; zatim bi se izmijenili neki od podataka o događaju, te kliknulo na gumb za spremanje promjena
+				Klikom na već dodani događaj kojeg se želi urediti, pojavljuje se overlay sa formom gdje su već popunjeni poznati podaci o odabranom događaju; zatim se mogu izmijeniti neki od podataka o događaju, te kliknulo na gumb za spremanje promjena
 			Brisanje događaja
 				Isto kao i uređivanje, samo što se – ovdje – ne bi izmijenili nikakvi podaci o događaju, već bi se samo kliknulo na gumb za brisanje
 	Crveni X gumb bi, naravno, služio izlasku iz aplikacije; no to bi možda bilo malo teško – ako ne i komplicirano – za implementirati ovdje, zbog čega nema nikakve funkcionalnosti iza sebe.
