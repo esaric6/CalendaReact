@@ -1,8 +1,8 @@
-import database from "./firebase";
+import database from "./firebase";  //  Importa se varijabla iz firebase.js
 
 const COLLECTION_NAME = "events";
 
-// Get all events for a given day
+//  Dohvacanje svih dogadaja koji se dogadaju na datum predan kao parametar, sortira ih po vremenu pocetka, te vraca listu njih (U slucaju greske vraca praznu listu)
 const getEvents = async (dayItem) => {
   const dbQuery = database
     .collection(COLLECTION_NAME)
@@ -34,7 +34,7 @@ const getEvents = async (dayItem) => {
   }
 };
 
-// Delete event
+//  Uzimanje dogadaja kao parametar, provjera da li on ima ID (Ako ima, azurira ga sa istim ID-em, inace kreira potpuno novi dogadaj kojem baza pridodaje ID)
 const deleteEvent = async (eventItem) => {
   const eventId = eventItem.id;
 
