@@ -2,6 +2,7 @@ import React from "react";
 import moment from "moment";
 import styled from "styled-components";
 
+//  Importa se komponenta "Events"; kojoj se predaju parametri "dayItem", "today" i "editEventHandler"
 import {Events} from "../Events";
 
 const GridWrap = styled.div`
