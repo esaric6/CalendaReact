@@ -93,12 +93,16 @@ const ExitBtn = styled(DeleteButton)`
   outline: unset;
 `;
 
+  //  Komponenta dobiva parametre "eventItem", "saveButtonHandler", "deleteButtonHandler" i "quitButtonHandler".  (prvi je objekt, ostali su funkcije)
 const Form = ({
   eventItem,
   saveButtonHandler,
   deleteButtonHandler,
   quitButtonHandler,
 }) => {
+  //  Komponenta ima četiri varijable stanja, te funkcije za njihovo azuriranje): "title", "date", "startTime" i "endTime"
+  //  Ako objekt "eventItem" postoji, te nije "null", u (gore navedene) varijable stanja se spremaju vrijednosti iz njega; kako bi one bile prikazane na formi, koja ga tada azurira
+  //  Ako objekt "eventItem" ne postoji, u (gore navedene) varijable stanja se spremaju pocetne vrijednosti; forma tada kreira novi dogadaj
   const [title, setTitle] = React.useState(eventItem?.title || "");
   const [date, setDate] = React.useState(
     eventItem?.date || moment().format("YYYY-MM-DD")
@@ -108,7 +112,11 @@ const Form = ({
   );
   const [endTime, setEndTime] = React.useState(eventItem?.endTime || "10:30");
 
-  // check startTime < endTime
+  //  Check startTime < endTime
+  //  Ako je korisnik mijenjao polja za vrijeme pocetka ili kraja, poziva se funkcija "validateStartEndTime", provjerava da li je "startTime" manji od "endTime"; iz stringa izvlaci vrijeme pocetka i kraja (sat i minutu), te ih pretvara u brojeve
+  //  Ako je vrijeme pocetka vece od vremena kraja, onda se vrijeme kraja postavlja na jedan sat nakon vremena pocetka; ako vrijednost sata prelazi 24, ono se umanjuje za 24 kako bi se resetiralo na ponoc.
+  //  Sati i minute moraju imati dvije znamenke, zbog cega se dodaju nule ispred brojeva manjih od 10
+  //  U konačnici, funkcija vraća validirana vremena početka i kraja u obliku stringa
   const validateStartEndTime = (startTime, endTime) => {
     let hourStartTime = parseInt(startTime.split(":")[0]);
     let minStartTime = parseInt(startTime.split(":")[1]);
@@ -199,6 +207,14 @@ const Form = ({
     quitButtonHandler();
   };
 
+  //  Klikom na X, poziva se funkcija "handleQuit" koja poziva funkciju "quitButtonHandler" predanu iz parametra komponente
+  //  Klikom na gumb za spremanje, poziva se funkcija "handleSubmit" koja poziva funkciju "saveButtonHandler" predanu iz parametra komponente
+  //  Ako postoji objekt "eventItem" i on nije "null", renderira se gumb za brisanje dogadaja koji poziva funkciju "handleDelete", te iz koje se poziva funkcija "deleteButtonHandler" predana iz parametra komponente
+  //  Polje "value" u formi prikazuje trenutne vrijednosti varijabli definiranih u L106
+  /*  Polje "onChange" poziva funkciju "handleChange", te koja azurira vrijednost varijable:
+        - "title" ako je korisnik mijenjao to polje
+        - "date" ako je korisnik mijenjao to polje
+  */
   return (
     <FormWrap>
       <ExitBtn onClick={handleQuit}>X</ExitBtn>
