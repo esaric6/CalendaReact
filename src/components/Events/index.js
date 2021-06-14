@@ -34,10 +34,10 @@ const EventTime = styled.div`
 `;
 
 //  Komponenta dobiva parametre "dayItem", "today" i "editEventHandler"
-//  Komponenta ima varijablu stanja "eventsList" i funkciju ažuriranja, te varijablu "setEventsList"
+//  Komponenta ima varijablu stanja "eventsList", te varijablu "setEventsList"
 const Events = ({ dayItem, today, editEventHandler }) => {
   const [eventsList, setEventsList] = useState([]);
-  //  Varijabla "maxTitleSize" označava koliko je najvise znakova moguce prikazati u naslovu dogadaja; predugi naslov se skracuje i dodaju se tri tocke
+  //  Varijabla "maxTitleSize" oznacava koliko je najvise znakova moguce prikazati u naslovu dogadaja; predugi naslov se skracuje i dodaju se tri tocke
   const maxTitleSize = 18;
 
   const isCurrDay = (day) => moment().isSame(day, "day");
@@ -53,8 +53,7 @@ const Events = ({ dayItem, today, editEventHandler }) => {
     fetchEvents(dayItem);
   }, [dayItem]);
 
-  //  Petlja prolazi kroz listu dogadaja, te za svaki prikazuje zeleni kvadratic u kalendaru
-  return eventsList.map((eventItem) => {
+    return eventsList.map((eventItem) => {
     const displayTitle =
       eventItem.title.length <= maxTitleSize
         ? eventItem.title
@@ -63,7 +62,7 @@ const Events = ({ dayItem, today, editEventHandler }) => {
     return (
       <EventWrap
         onClick={() => {
-          //  Klikom na dogadaj, pokrece se funkcija "editEventHandler", te joj se predaje objekt događaja
+          //  Klikom na postojeci dogadaj, pokrece se funkcija "editEventHandler", te joj se predaje objekt događaja
           //  Ako dogadaj nije u trenutnom mjesecu, prozirnost se mijenja (kroz CSS varijablu "thismonth")
           //  Ako dogadaj je na danasnjem datumu, boja se mijenja u plavo (kroz CSS varijablu "thisday")
           editEventHandler(eventItem);
