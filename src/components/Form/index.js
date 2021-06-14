@@ -93,17 +93,17 @@ const ExitBtn = styled(DeleteButton)`
   outline: unset;
 `;
 
-  //  Komponenta dobiva parametre "eventItem", "saveButtonHandler", "deleteButtonHandler" i "quitButtonHandler".  (prvi je objekt, ostali su funkcije)
+  //  Komponenta dobiva jedan objekt, i tri funkcije kao parametre
 const Form = ({
   eventItem,
   saveButtonHandler,
   deleteButtonHandler,
   quitButtonHandler,
 }) => {
-  //  Komponenta ima četiri varijable stanja, te funkcije za njihovo azuriranje): "title", "date", "startTime" i "endTime"
+  //  Komponenta ima cetiri varijable stanja i funkcije za njihovo azuriranje
+  const [title, setTitle] = React.useState(eventItem?.title || "");
   //  Ako objekt "eventItem" postoji, te nije "null", u (gore navedene) varijable stanja se spremaju vrijednosti iz njega; kako bi one bile prikazane na formi, koja ga tada azurira
   //  Ako objekt "eventItem" ne postoji, u (gore navedene) varijable stanja se spremaju pocetne vrijednosti; forma tada kreira novi dogadaj
-  const [title, setTitle] = React.useState(eventItem?.title || "");
   const [date, setDate] = React.useState(
     eventItem?.date || moment().format("YYYY-MM-DD")
   );
@@ -112,24 +112,25 @@ const Form = ({
   );
   const [endTime, setEndTime] = React.useState(eventItem?.endTime || "10:30");
 
-  //  Check startTime < endTime
-  //  Ako je korisnik mijenjao polja za vrijeme pocetka ili kraja, poziva se funkcija "validateStartEndTime", provjerava da li je "startTime" manji od "endTime"; iz stringa izvlaci vrijeme pocetka i kraja (sat i minutu), te ih pretvara u brojeve
-  //  Ako je vrijeme pocetka vece od vremena kraja, onda se vrijeme kraja postavlja na jedan sat nakon vremena pocetka; ako vrijednost sata prelazi 24, ono se umanjuje za 24 kako bi se resetiralo na ponoc.
-  //  Sati i minute moraju imati dvije znamenke, zbog cega se dodaju nule ispred brojeva manjih od 10
-  //  U konačnici, funkcija vraća validirana vremena početka i kraja u obliku stringa
+  /*  Funkcija "validateStartEndTime" se poziva ako je korisnik mijenjao polja za vrijeme pocetka ili kraja, te koja provjerava da li je vrijeme pocetka manje od vremena kran
+        Iz stringa izvlaci vrijeme pocetka i kraja (sat i minutu), te ih pretvara u brojeve
+  */
   const validateStartEndTime = (startTime, endTime) => {
     let hourStartTime = parseInt(startTime.split(":")[0]);
     let minStartTime = parseInt(startTime.split(":")[1]);
     let hourEndTime = parseInt(endTime.split(":")[0]);
     let minEndTime = parseInt(endTime.split(":")[1]);
 
+    /*  Ako je vrijeme pocetka vece od vremena kraja, onda se vrijeme kraja postavlja na jedan sat nakon vremena pocetka; ako vrijednost sata prelazi 24, ono se umanjuje za 24
+          Kako bi se resetiralo na ponoc.  */
     if (hourStartTime > hourEndTime) {
       hourEndTime = hourStartTime + 1;
       minEndTime = minStartTime;
       if (hourEndTime > 23) {
         hourEndTime -= 24;
       }
-    } else if (hourStartTime === hourEndTime && minStartTime >= minEndTime) {
+    }
+    else if (hourStartTime === hourEndTime && minStartTime >= minEndTime) {
       hourEndTime = hourStartTime + 1;
       minEndTime = minStartTime;
       if (hourEndTime > 23) {
@@ -137,7 +138,7 @@ const Form = ({
       }
     }
 
-    // Add leading zeros
+    //  Sati i minute moraju imati dvije znamenke, zbog cega se dodaju nule ispred brojeva manjih od 10
     if (hourStartTime < 10) {
       hourStartTime = `0${hourStartTime}`;
     }
@@ -153,6 +154,8 @@ const Form = ({
 
     const newStartTime = `${hourStartTime}:${minStartTime}`;
     const newEndTime = `${hourEndTime}:${minEndTime}`;
+
+    //  U konačnici, funkcija vraća validirana vremena početka i kraja u obliku stringa
     return { newStartTime, newEndTime };
   };
 
